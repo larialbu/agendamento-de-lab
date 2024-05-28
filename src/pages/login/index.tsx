@@ -65,10 +65,10 @@ export default function LoginPage() {
                             <ButtonContainer>
                                 <Button
                                     mt={4}
-                                    bg="#ffba26"
-                                    color="white"
+                                     bg="#006a12" 
+                                    _hover={{ bg: 'green.500' }} 
+                                    color="white" 
                                     type='submit'
-                                    _hover={{ bg: 'red.500' }}
                                     isLoading={loading}
                                 >
                                     Entrar
