@@ -59,12 +59,6 @@ export function SideBar() {
                     <IconExit>
                         <DrawerCloseButton />
                     </IconExit>
-                    <DrawerHeader>
-                        <Header>
-                            <p>LAB B208</p>
-                        </Header>
-                    </DrawerHeader>
-
                     <DrawerBody>
                         {superAdmin.map((item, index) => (
                             <Text
