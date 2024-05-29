@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { Container, LoginContainer, ContainerRegister, ImageContainer, ButtonContainer } from '../../styles/pages/login/style';
+import { Button, FormControl, Input } from '@chakra-ui/react';
+import { Container, LoginContainer, ContainerRegister, ButtonContainer } from '../../styles/pages/login/style';
 
 export default function LoginPage() {
     const router = useRouter();
@@ -57,15 +57,12 @@ export default function LoginPage() {
                     <form onSubmit={handleSubmit}>
                         <FormControl>
                             <Input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} marginBottom='20px'/>
-
                             <Input type='password' placeholder='Senha' value={password} onChange={(e) => setPassword(e.target.value)} />
-
                             {error && <p>{error}</p>}
-
                             <ButtonContainer>
                                 <Button
                                     mt={4}
-                                     bg="#006a12" 
+                                    bg="#006a12" 
                                     _hover={{ bg: 'green.500' }} 
                                     color="white" 
                                     type='submit'
