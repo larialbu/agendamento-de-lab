@@ -22,9 +22,4 @@ export const Text = styled.p`
     padding:  10px 10px;
     cursor: pointer;
     font-size: 20px;
-
-    &:hover {
-        background-color: #bafeb2;
-        border-radius: 10px;
-    }
 `
