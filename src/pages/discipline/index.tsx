@@ -76,7 +76,7 @@ export default function SubjectManagement() {
                             Gerenciamento de Disciplinas
                         </Title>
                         <ButtonWrapper>
-                            <Button bg="#006a12" _hover={{ bg: 'green.500' }} color="white" onClick={handleOpenModalCreate}>+ <span>Adicionar disciplina</span></Button>
+                            <Button bg="#006a12" _hover={{ bg: 'green.500' }} color="white" onClick={handleOpenModalCreate}>+ <span>Disciplina</span></Button>
                         </ButtonWrapper>
                     </TitlePage>
 
