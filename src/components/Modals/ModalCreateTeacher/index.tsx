@@ -11,8 +11,6 @@ const ModalCreateTeacher: React.FC<ModalCreateTeacherProps> = ({ isOpen, onClose
     const initialFormData = {
         name: '',
         email: '',
-        password: '',
-        confirm_password: '',
         employee_id: ''
     };
 
@@ -80,8 +78,6 @@ const ModalCreateTeacher: React.FC<ModalCreateTeacherProps> = ({ isOpen, onClose
                 <ModalBody>
                     <Input name="name" placeholder="Nome" value={formData.name} onChange={handleInputChange} marginTop="20px" />
                     <Input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleInputChange} marginTop="20px" />
-                    <Input name="password" type="password" placeholder="Senha" value={formData.password} onChange={handleInputChange} marginTop="20px" />
-                    <Input name="confirm_password" type="password" placeholder="Confirmar senha" value={formData.confirm_password} onChange={handleInputChange} marginTop="20px" />
                     <Input name="employee_id" placeholder="ID do Funcionário" value={formData.employee_id} onChange={handleInputChange} marginTop="20px" />
                 </ModalBody>
                 <ModalFooter>

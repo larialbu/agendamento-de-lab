@@ -83,7 +83,7 @@ export default function TeacherManagement() {
                             Gerenciamento de Professores
                         </Title>
                         <ButtonWrapper>
-                            <Button bg="#006a12" _hover={{ bg: 'green.500' }} color="white" onClick={handleOpenCreateModal}>+ <span>Adicionar Professor</span></Button>
+                            <Button bg="#006a12" _hover={{ bg: 'green.500' }} color="white" onClick={handleOpenCreateModal}>+ <span>Professor</span></Button>
                         </ButtonWrapper>
                     </TitlePage>
 

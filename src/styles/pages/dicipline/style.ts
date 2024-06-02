@@ -53,7 +53,7 @@ export const Main = styled.div`
     justify-content: space-between;
     align-items: center;
     min-height: 70vh;
-    margin: 90px 200px 0px 200px;
+    margin: 90px 100px 0px 100px;
     border-radius: 10px;
     background-color: white;
 `;
@@ -101,7 +101,7 @@ export const ProjectDescription = styled.p`
   margin-bottom: 1rem;
 `;
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
     margin: 20px 20px;
     background-color: white;
     border-radius: 10px;
