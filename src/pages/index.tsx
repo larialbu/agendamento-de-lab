@@ -6,12 +6,12 @@ import { Heading, VStack, HStack, Text, Table, Thead, Tbody, Tr, Th, Td, Button,
 import { DeleteIcon } from '@chakra-ui/icons'; // Import delete icon
 
 interface Teacher {
-  id: string;
+  id: number;
   name: string;
 }
 
 interface Subject {
-  id: string;
+  id: number;
   name: string;
 }
 
@@ -46,64 +46,64 @@ const ScheduleManagement = () => {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [subjects, setSubjects] = useState<Subject[]>([]);
 
+  const fetchTeachers = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('Token de autorização não encontrado.');
+        return;
+      }
+      const response = await axios.get<Teacher[]>('https://marcacao-sala.onrender.com/teacher', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setTeachers(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar professores:', error);
+    }
+  };
+
+  const fetchSubjects = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('Token de autorização não encontrado.');
+        return;
+      }
+      const response = await axios.get<Subject[]>('https://marcacao-sala.onrender.com/subject', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setSubjects(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar disciplinas:', error);
+    }
+  };
+
+  const fetchSchedules = async () => {
+    setLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('Token de autorização não encontrado.');
+        return;
+      }
+      const response = await axios.get<Schedule[]>('https://marcacao-sala.onrender.com/schedule', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setSchedules(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar agendamentos:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchTeachers = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          console.error('Token de autorização não encontrado.');
-          return;
-        }
-        const response = await axios.get<Teacher[]>('https://marcacao-sala.vercel.app/teacher', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setTeachers(response.data);
-      } catch (error) {
-        console.error('Erro ao buscar professores:', error);
-      }
-    };
-
-    const fetchSubjects = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          console.error('Token de autorização não encontrado.');
-          return;
-        }
-        const response = await axios.get<Subject[]>('https://marcacao-sala.vercel.app/subject', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setSubjects(response.data);
-      } catch (error) {
-        console.error('Erro ao buscar disciplinas:', error);
-      }
-    };
-
-    const fetchSchedules = async () => {
-      setLoading(true);
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          console.error('Token de autorização não encontrado.');
-          return;
-        }
-        const response = await axios.get<Schedule[]>('https://marcacao-sala.vercel.app/schedule', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setSchedules(response.data);
-      } catch (error) {
-        console.error('Erro ao buscar agendamentos:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchTeachers();
     fetchSubjects();
     fetchSchedules();
@@ -128,15 +128,25 @@ const ScheduleManagement = () => {
       if (!formData.teacher_id || !formData.subject_id || !formData.start_time || !formData.end_time) {
         throw new Error('Todos os campos devem ser preenchidos.');
       }
+
+      // Convertendo IDs para número e formatando as datas
+      const dataToSend = {
+        teacher_id: Number(formData.teacher_id),
+        subject_id: Number(formData.subject_id),
+        start_time: new Date(formData.start_time).toISOString(),
+        end_time: new Date(formData.end_time).toISOString(),
+      };
+
       // Enviando solicitação para agendar um horário
-      const response = await axios.post<Schedule>('https://marcacao-sala.vercel.app/schedule', formData, {
+      const response = await axios.post<Schedule>('https://marcacao-sala.onrender.com/schedule', dataToSend, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       // Verificando se a resposta do servidor foi bem-sucedida
       if (response.status === 200) {
-        setSchedules([...schedules, response.data]);
+        await fetchSchedules(); // Refetch the schedules
         setFormData({
           teacher_id: '',
           subject_id: '',
@@ -151,7 +161,7 @@ const ScheduleManagement = () => {
       // Adicione lógica para exibir uma mensagem de erro ao usuário, se necessário
     }
   };
-  
+
   const handleDelete = async (id: string) => {
     try {
       const token = localStorage.getItem('token');
@@ -159,7 +169,7 @@ const ScheduleManagement = () => {
         console.error('Token de autorização não encontrado.');
         return;
       }
-      await axios.delete(`https://marcacao-sala.vercel.app/schedule/${id}`, {
+      await axios.delete(`https://marcacao-sala.onrender.com/schedule/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

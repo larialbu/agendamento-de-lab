@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons'; 
 import { Header, IconExit, Text } from "../SideBar/styles";
-
+ 
 
 export function SideBar() {
     const { isOpen, onOpen, onClose } = useDisclosure();

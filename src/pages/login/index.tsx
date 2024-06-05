@@ -15,7 +15,7 @@ export default function LoginPage() {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await fetch('https://marcacao-sala.vercel.app/auth/login', {
+            const response = await fetch('https://marcacao-sala.onrender.com/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

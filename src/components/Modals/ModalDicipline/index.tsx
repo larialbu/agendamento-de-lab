@@ -27,7 +27,7 @@ const DisciplineDetails: React.FC<DisciplineDetailsProps> = ({ disciplineId, onC
                 }
 
                 setLoading(true);
-                const response = await axios.get(`https://marcacao-sala.vercel.app/subject/${disciplineId}`, {
+                const response = await axios.get(`https://marcacao-sala.onrender.com/subject/${disciplineId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -53,7 +53,7 @@ const DisciplineDetails: React.FC<DisciplineDetailsProps> = ({ disciplineId, onC
             }
 
             setLoading(true);
-            await axios.put(`https://marcacao-sala.vercel.app/subject/${discipline.id}`, discipline, {
+            await axios.put(`https://marcacao-sala.onrender.com/subject/${discipline.id}`, discipline, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -89,7 +89,7 @@ const DisciplineDetails: React.FC<DisciplineDetailsProps> = ({ disciplineId, onC
             }
 
             setLoading(true);
-            await axios.delete(`https://marcacao-sala.vercel.app/subject/${discipline.id}`, {
+            await axios.delete(`https://marcacao-sala.onrender.com/subject/${discipline.id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

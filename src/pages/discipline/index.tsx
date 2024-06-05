@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Button, Spinner, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, Flex } from '@chakra-ui/react';
+import { Button, Spinner, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, Flex, Heading } from '@chakra-ui/react';
 import { Container, TitlePage, Title, ButtonWrapper, Main } from '../../styles/pages/dicipline/style';
 import ModalCreateDiscipline from '@/components/Modals/ModalCreateDicipline';
 import DisciplineDetails from '@/components/Modals/ModalDicipline';
@@ -27,7 +27,7 @@ export default function SubjectManagement() {
                 throw new Error('Token not found');
             }
 
-            const response = await axios.get('https://marcacao-sala.vercel.app/subject', {
+            const response = await axios.get('https://marcacao-sala.onrender.com/subject', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -72,9 +72,9 @@ export default function SubjectManagement() {
             <Main>
                 <Container>
                     <TitlePage>
-                        <Title>
-                            Gerenciamento de Disciplinas
-                        </Title>
+                    <Heading as="h1" size="lg" textAlign="center" mb="6">
+                        Lista de Disciplinas
+                    </Heading>
                         <ButtonWrapper>
                             <Button bg="#006a12" _hover={{ bg: 'green.500' }} color="white" onClick={handleOpenModalCreate}>+ <span>Disciplina</span></Button>
                         </ButtonWrapper>

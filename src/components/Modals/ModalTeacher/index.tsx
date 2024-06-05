@@ -22,7 +22,7 @@ const TeacherModal: React.FC<TeacherModalProps> = ({ isOpen, teacherId, onClose 
                 }
 
                 setLoading(true);
-                const response = await axios.get(`https://marcacao-sala.vercel.app/teacher/${teacherId}`, {
+                const response = await axios.get(`https://marcacao-sala.onrender.com/teacher/${teacherId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -48,7 +48,7 @@ const TeacherModal: React.FC<TeacherModalProps> = ({ isOpen, teacherId, onClose 
             }
 
             setLoading(true);
-            await axios.put(`https://marcacao-sala.vercel.app/teacher/${teacher.id}`, teacher, {
+            await axios.put(`https://marcacao-sala.onrender.com/teacher/${teacher.id}`, teacher, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -77,7 +77,7 @@ const TeacherModal: React.FC<TeacherModalProps> = ({ isOpen, teacherId, onClose 
             }
 
             setLoading(true);
-            await axios.delete(`https://marcacao-sala.vercel.app/teacher/${teacher.id}`, {
+            await axios.delete(`https://marcacao-sala.onrender.com/teacher/${teacher.id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

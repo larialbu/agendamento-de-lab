@@ -34,7 +34,7 @@ const ModalCreateTeacher: React.FC<ModalCreateTeacherProps> = ({ isOpen, onClose
                 return;
             }
 
-            const response = await axios.post('https://marcacao-sala.vercel.app/teacher/', formData, {
+            const response = await axios.post('https://marcacao-sala.onrender.com/teacher/', formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

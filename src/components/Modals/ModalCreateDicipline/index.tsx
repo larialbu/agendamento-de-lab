@@ -32,7 +32,7 @@ const ModalCreateDiscipline: React.FC<ModalCreateDisciplineProps> = ({ isOpen, o
                 throw new Error('Token not found');
             }
 
-            const response = await axios.post('https://marcacao-sala.vercel.app/subject/', formData, {
+            const response = await axios.post('https://marcacao-sala.onrender.com/subject/', formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

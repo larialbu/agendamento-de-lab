@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import styles from "@/styles/Home.module.css";
-import { Button, Spinner, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, Flex } from '@chakra-ui/react';
+import { Button, Spinner, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, Flex, Heading } from '@chakra-ui/react';
 import { Container, TitlePage, Title, ButtonWrapper } from '../../styles/pages/teacher/style';
 import TeacherModal from '@/components/Modals/ModalTeacher'; 
 import ModalCreateTeacher from '@/components/Modals/ModalCreateTeacher';
@@ -29,7 +29,7 @@ export default function TeacherManagement() {
             if (token) {
                 setLoading(true);
                 try {
-                    const response = await axios.get('https://marcacao-sala.vercel.app/teacher', {
+                    const response = await axios.get('https://marcacao-sala.onrender.com/teacher', {
                         headers: {
                             Authorization: `Bearer ${token}`,
                         },
@@ -79,9 +79,9 @@ export default function TeacherManagement() {
             <main className={`${styles.main}`}>
                 <Container>
                     <TitlePage>
-                        <Title>
-                            Gerenciamento de Professores
-                        </Title>
+                    <Heading as="h1" size="lg" textAlign="center" mb="6">
+                        Lista de professores
+                    </Heading>
                         <ButtonWrapper>
                             <Button bg="#006a12" _hover={{ bg: 'green.500' }} color="white" onClick={handleOpenCreateModal}>+ <span>Professor</span></Button>
                         </ButtonWrapper>
